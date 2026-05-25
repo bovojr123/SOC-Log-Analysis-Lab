@@ -22,7 +22,8 @@ step 1: I made sure to check the static IP configuration of all my virtual machi
 Step 2: rsyslog configuration 
 using rsyslog to forward logs data to my defender ubuntu machine for analysis.
 
-Step 3: Enable services
+Step 3: Restart and Enable rsyslog services
+
 
 Attack Simulation
 
@@ -30,30 +31,44 @@ Attack 1: using Nmao reconnaissance to check if the host was up
 using the command: nmap -sS -sV 192.168.56.102
 
 here is the picture of the attack:
+<img width="4032" height="3024" alt="IMG_9883" src="https://github.com/user-attachments/assets/f3bcacd3-36c1-419e-a058-4661eb2f91e3" />
 
 
 
-here is the picture of syslog showing the connection attempt:
+here is the picture of syslog showing the connection attempt: 
+<img width="4032" height="3024" alt="IMG_9935" src="https://github.com/user-attachments/assets/af9c26d8-0f36-4a91-a3b7-b1f439e431b6" />
+<img width="4032" height="3024" alt="IMG_9933" src="https://github.com/user-attachments/assets/d46c6e99-a01f-422a-b84f-5fe4cca978cc" />
 
 
 Attack 2: Using SSH Brute Force to try multiple password to get the admin password
 using the command: hydra -l admin -P /usr/share/wordlists/rockyou.txt.gz 192.168.56.102
+<img width="4032" height="3024" alt="IMG_9884" src="https://github.com/user-attachments/assets/297fbaa4-25b4-4d1f-8812-f421f0bc27b6" />
+
 
 Here is picture of the log evidence:
+<img width="4032" height="3024" alt="IMG_9936" src="https://github.com/user-attachments/assets/be82ee37-a25f-419a-bf87-a9b3611d5079" />
+
 
 Attack 3: Using of Directory Busting(web enumeration)
 using the command: gobuster dir -u http://192.168.56.102 -w /usr/share/wordlists/dirb/common.txt
+<img width="3024" height="4032" alt="IMG_9885" src="https://github.com/user-attachments/assets/cb53ac15-0c49-4484-9eef-58a72b405e10" />
+
 
 here is the picture of the attack:
+<img width="4032" height="3024" alt="IMG_9910" src="https://github.com/user-attachments/assets/63607a1c-0fd0-419d-8f2e-7fd03198e73c" />
+
 
 Log Analysis Queries
-1. Here is the total number of failed SSH attempts:
+1. Here is the total number of failed SSH attempts:<img width="4032" height="3024" alt="IMG_9937" src="https://github.com/user-attachments/assets/a72a551b-ba36-44a1-89fd-f7a8fdde5811" />
 
-2. Here is the top attacking IP addr:
 
-3. Here are the targeted usernames
+2. Here is the top attacking IP addr:<img width="4032" height="3024" alt="IMG_9937" src="https://github.com/user-attachments/assets/1860f927-6acb-490d-b2e9-a01be9d7dde8" />
 
-4. Did any login succeed?
+
+3. Here are the targeted usernames: <img width="4032" height="3024" alt="IMG_9937" src="https://github.com/user-attachments/assets/0462f8af-6733-4c62-b67f-76d730f886b0" />
+
+
+4. Did any login succeed? No, all session showed failed password
 
 
 Recommendation 
